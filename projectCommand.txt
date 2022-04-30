@@ -1,0 +1,63 @@
+Process Of creating DotNet Project::
+
+First Create A
+
+1) see the projects template 
+ dotnet --info
+ 6 dotnet new -l
+
+2) create a folder for project
+
+  11 mkdir Reactivities
+  12 cd .\Reactivities\
+
+3) create a solution for multiple project
+  15 dotnet new sln
+
+4) create project using dotnet Template
+
+  18 dotnet new webapi -n API
+  20 dotnet new classlib -n Application
+  21 dotnet new classlib -n Domain
+  22 dotnet new classlib -n Persistance
+  23 del .\Persistance\
+  27 dotnet new classlib -n Persistence
+
+5) add all the project into solution
+  35 dotnet sln add .\API\API.csproj
+  36 dotnet sln add .\Application\Application.csproj
+  37 dotnet sln add .\Persistence\
+  38 dotnet sln add .\Domain\
+  40 dotnet sln list
+
+6) add reference that need to use another project : like Service layer need Model Layer
+  43 dotnet add reference ..\Application\
+  46 dotnet add reference ..\Domain\
+  47 dotnet add reference ..\Persistence\
+  50 dotnet add reference ..\Domain\
+  55 dotnet sln list
+
+7) dot net ef tools need to manage db
+dotnet tool install --global dotnet-ef --version 6.0.4
+dotnet ef -h
+dotnet ef migrations add initialCreate -p Persistance -s API
+
+8) create update drop datbase
+dotnet ef database -h
+  var app = CreateHostBuilder(args).Build();
+  using var scope = app.Services.CreateScope(); // distory after main method
+  var services = scope.ServiceProvider;
+  var context = services.GetRequiredService<DataContext>();
+  context.Database.Migrate();   
+  var logger = services.GetRequiredService<ILogger<Program>>();
+  logger.LogError(ex, "An error occured during migrations");
+  app.Run();
+
+9) git and gitignore 
+    dotnet new gitignore
+    git init
+
+
+
+
+
