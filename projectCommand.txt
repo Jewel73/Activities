@@ -56,6 +56,10 @@ dotnet ef database -h
 9) git and gitignore 
     dotnet new gitignore
     git init
+    git status
+    git config --list --show-origin
+    git config --global user.name "Md Jewel"
+    git config --global user.email "jewelranar71@gmail.com"
 
 
 
