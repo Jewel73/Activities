@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'semantic-ui-css/semantic.min.css';
-import './index.css';
-import App from './App';
+import './layout/style.css';
+import App from './layout/App';
 import reportWebVitals from './reportWebVitals';
-// "semantic-ui-css": "^2.4.1",
+
 const root = ReactDOM.createRoot(
   
   document.getElementById('root') as HTMLElement
