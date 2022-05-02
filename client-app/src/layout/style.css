@@ -10,7 +10,6 @@ code {
 }
 
 
-
 .menu_wrapper{
   display: inline-flex;
   margin: auto;
@@ -20,28 +19,27 @@ code {
   overflow: hidden !important;
 }
 
-.ui .segment{
-  background-color: red;
-}
-.activity_grid{
-  /* overflow: hidden !important; */
-  /* margin-top: 110px !important; */
-  /* width: 90% !important; */
-  /* background-color: rgb(31, 41, 41); */
-  /* height: 1800px; */
-}
+
 
 .left_grid{
-  margin-top: 50px !important;
+  
+}
+.right_grid{
+
+}
+
+.activity_details{
+  width: 66% !important;
+}
+
+.activity_form{
+  width: 66% !important;
 }
 
 .item_group{
   float: right;
   height: 100% !important;
   width: 80%;
-  
-  /* background-color: aqua; */
-
 }
 
 .activity_item{
@@ -53,4 +51,5 @@ code {
 
 .ui.grid{
   margin: 0;
+  margin-top: 50px !important;
 }

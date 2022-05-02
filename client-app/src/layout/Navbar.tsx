@@ -3,7 +3,11 @@ import './style.css'
 import { Container, Button, Menu } from 'semantic-ui-react';
 import { JsxAttributeLike } from 'typescript';
 
-export default function Navbar(): JSX.Element{
+interface Props {
+    formOpen: ()=> void;
+}
+
+export default function Navbar({formOpen}: Props){
 
     return (
         <>
@@ -17,7 +21,7 @@ export default function Navbar(): JSX.Element{
                         <Menu.Item content='Activities'/>
                         
                         <Menu.Item>
-                            <Button positive content={'Create Activity'}></Button>
+                            <Button onClick={formOpen} positive content={'Create Activity'}></Button>
                         </Menu.Item>
                     </div>
             </Menu>
