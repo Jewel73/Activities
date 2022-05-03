@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css'
-import { Container, Button, Menu } from 'semantic-ui-react';
-import { JsxAttributeLike } from 'typescript';
+import { Button, Menu } from 'semantic-ui-react';
 
 interface Props {
     formOpen: ()=> void;

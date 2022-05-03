@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Activity } from '../models/activity';
 import Navbar from './Navbar';
 import ActivityDashboard from '../features/activities/dashboard/ActivityDashboard';
 import {v4 as uuid} from 'uuid';
+import agent from '../api/api';
+import Spinner from './Spinner';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(()=>{
-    axios.get<Activity[]>("http://localhost:5000/api/activities").then(response =>{
-      setActivities(response.data);
+    agent.Activities.list().then(response =>{
+      let activities : Activity[] =[];
+      response.map(activity=>{
+        activity.date = activity.date.split('T')[0]
+        activities.push(activity);
+      })
+      setActivities(response);
+      setLoading(false);
     })
-  }, [])
+  },[])
 
   function handleSelectActivity(id : string){
       setSelectedActivity(activities.find(a => a.id === id));
@@ -49,7 +57,7 @@ function App() {
     setActivities([...activities.filter(a => a.id !== id)]);
   }
 
-
+  if(loading) return <Spinner />
   return (
     <div className="App">
       <Navbar formOpen = {handleFormOpen}/>

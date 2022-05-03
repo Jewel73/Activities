@@ -34,11 +34,11 @@ export default function ActivityForm({activity: selectedActivity, formClose, cre
     return (
         <Segment clearing className='activity_form'>
             <Form onSubmit={()=>createOrUpdateActivity(activity)}>
-                <Form.Input value={activity.id} name = 'id' onChange={handleOnInputChange} as='hide' />
+                <Form.Input value={activity.id} name = 'id' onChange={handleOnInputChange} disabled />
                 <Form.Input placeholder='Title' value={activity.title} name='title' onChange={handleOnInputChange} ></Form.Input>
                 <Form.Input placeholder='Description' value={activity.description}  name='description' onChange={handleOnInputChange}></Form.Input>
                 <Form.Input placeholder='Category' value={activity?.category} name='category' onChange={handleOnInputChange}></Form.Input>
-                <Form.Input placeholder='Date' value={activity?.date} name='date' onChange={handleOnInputChange}></Form.Input>
+                <Form.Input type='date' placeholder='Date' value={activity?.date} name='date' onChange={handleOnInputChange}></Form.Input>
                 <Form.Input placeholder='City' value={activity?.city} name='city' onChange={handleOnInputChange}></Form.Input>
                 <Form.Input placeholder='Venue' value={activity?.venue} name='venue' onChange={handleOnInputChange}></Form.Input>
                 <Button floated='right' type='submit' positive content='Submit'/>

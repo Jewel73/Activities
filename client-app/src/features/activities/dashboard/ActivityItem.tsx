@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Icon, Image, Item, ItemContent, Label, Segment } from 'semantic-ui-react'
+import { Button, Item, Label } from 'semantic-ui-react'
 import { Activity } from '../../../models/activity'
 import '../../../layout/style.css'
 
