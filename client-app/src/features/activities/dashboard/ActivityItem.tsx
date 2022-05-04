@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Item, Label } from 'semantic-ui-react'
-import { Activity } from '../../../models/activity'
 import '../../../layout/style.css'
+import { useStore } from '../../../store/store'
+import { observer } from 'mobx-react-lite'
 
-interface Props {
-    activities: Activity[];
-    selectActivity:(id : string) => void;
-    deleteActivity: (id: string) => void;
-}
 
-export default function ActivityItem({activities, selectActivity, deleteActivity}: Props){
+export default observer(function ActivityItem(){
+
+    const {activityStore} = useStore();
+    const {activities, loading, deleteActivity} = activityStore;
+    
+    const [target , setTarget] = useState('');
+
+    function handleDeleteButton(event:any, id: string) {
+        let classArray = event.target.classList
+        setTarget(classArray[classArray.length-1]);
+        deleteActivity(id);       
+    }
     return (
         <>
             <Item.Group className='item_group'>
@@ -24,8 +31,15 @@ export default function ActivityItem({activities, selectActivity, deleteActivity
                            </Item.Description>
 
                            <Item.Extra>
-                               <Button onClick={()=> selectActivity(activity.id)} floated='right' content='View' color='blue' />
-                               <Button onClick={()=> deleteActivity(activity.id)} floated='right' content='Delete' color='red' />
+                               <Button onClick={()=> activityStore.selectAcitivity(activity.id)} floated='right' content='View' color='blue' />
+                               <Button 
+                                        className={activity.id}
+                                        
+                                        loading={loading && target === activity.id}  
+                                        onClick={(e)=> handleDeleteButton(e,activity.id)} 
+                                        floated='right' 
+                                        content='Delete' 
+                                        color='red' />
                                <Label basic content={activity.category} />
                            </Item.Extra>
                        </Item.Content>
@@ -34,4 +48,4 @@ export default function ActivityItem({activities, selectActivity, deleteActivity
             </Item.Group>
         </>
     )
-}
+})
